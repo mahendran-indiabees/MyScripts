@@ -1,0 +1,65 @@
+For Windows:
+============
+
+1. Windows Installer (jenkins.msi file) --> UI based installation
+
+=> Go to Jenkins download page
+
+https://www.jenkins.io/download/
+
+=> Download winodows installer (.msi)
+
+=> Run the jenkins.msi file
+
+=> Enter the secret password (located in installation directory)
+
+=> Install the required plugins
+
+=> Enter user and password.
+
+=> Start the Jenkins
+
+========================================================================================
+
+2. jenkins.war --> Command line installation
+
+=> Go to Jenkins download page
+
+https://www.jenkins.io/download/
+
+=> Download generic war (.war)
+
+=> Open the command prompt and Run the below commmand
+java -jar jenkins.war
+
+=> Enter the secret password (located in installation directory)
+
+=> Install the required plugins
+
+=> Enter user and password.
+
+=> Start the Jenkins
+
+==========================================================================================
+
+3. tomcat --> Install Jenkins using tomcat
+
+=> Go to Jenkins download page
+
+https://www.jenkins.io/download/
+
+=> Download generic war (.war)
+
+=> Install the tomcat server in your operating machine
+
+=> copy the war file and paste in webapps folder
+
+=> Start the tomcat
+
+=> Enter the secret password (located in installation directory)
+
+=> Install the required plugins
+
+=> Enter user and password.
+
+=> Start the Jenkins

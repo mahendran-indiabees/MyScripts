@@ -1,0 +1,24 @@
+Jenkins:
+================
+
+https://www.jenkins.io/download/
+
+For Windows:
+============
+
+1. Windows Installer (jenkins.msi file) --> UI based installation (Recommended)
+2. jenkins.war --> Command line installation
+3. tomcat --> Install Jenkins using tomcat
+
+For Linux:
+=============
+1. Linux commad to install Jenkins
+2.  jenkins.war --> Command line installation
+3. tomcat --> Install Jenkins using tomcat
+
+
+Prerequisite for jenkins installation:
+==============================
+
+1. Java should be installed on your operating machine. (Java version 8 or above)
+2. Need atleast 256 RAM and 3GB diskspace
