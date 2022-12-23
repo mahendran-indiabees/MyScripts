@@ -1,1 +1,14 @@
-
+Prerequisite
+**********************
+a) Git need to be install
+b) yq need to install in linux
+   Install commands:
+   --------------------
+   yum install jq
+   (or)
+   wget -qO /usr/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+   chmod a+x /usr/bin/yq
+   
+   
+#Run the shell script
+sh UpdateBuildNumber GitUserName 'GitPassword' $ARTIFACT_NUMBER https://github.com/mahendran-indiabees master temp/test.yaml
