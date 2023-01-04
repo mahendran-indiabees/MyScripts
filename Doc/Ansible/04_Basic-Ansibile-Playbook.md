@@ -79,3 +79,17 @@ ansible-playbook --syntax-check <yaml file>
 ```
 ansible-playbook <yaml file>
 ```
+
+## Verbose ansible playbook 
+
+```
+ansible-playbook <yaml file> -v
+```
+**Increase verbose Depth level**
+```
+ansible-playbook <yaml file> -vv
+```
+**Increase verbose Depth level**
+```
+ansible-playbook <yaml file> -vvv
+```
