@@ -1,11 +1,15 @@
 ## Yaml Basic rules
 
 ```
-Space characters is used for intentation
-Do not use Tab for intentation
-Yaml should be start with three dashes and end with three dots (But it is not mandatory)
-It is key value pair based
-'-' is used to list the items
+* Space characters is used for intentation 
+
+* Do not use Tab for intentation
+
+* Yaml should be start with three dashes and end with three dots (But it is not mandatory)
+
+* It is key value pair based
+
+* Symbol '-' is used to list the items
 ```
 
 ## Yaml Basic syntax
