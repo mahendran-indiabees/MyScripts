@@ -23,6 +23,11 @@ ansible -m ping all
 ansible all --list-hosts
 ```
 
+###### List specic group servers 
+```
+ansible --list-hosts webserver
+```
+
 ###### Execute linux command in agent nodes 
 ```
 ansible webserver -m command -a 'df -hk'
