@@ -20,7 +20,7 @@ ansible --version
 
 ######  For our Understanding, Let assume we have below nodes
 
-```
+
 **master node**
 ansmaster
 
@@ -29,6 +29,26 @@ ansnode1
 ansnode2
 ansnode3
 ansnode4
+
+######  Edit `/etc/hosts` file in ansible master node and add all agent nodes entries
+
 ```
+vi /etc/hosts
+```
+
+![image](https://user-images.githubusercontent.com/96326288/210486231-0b486b19-316b-48bd-bb5a-cf10faaaeafd.png)
+
+######  Generate ssh key and copy public key to all agent nodes
+
+```
+ssh-keygen
+
+cd ~/.ssh/
+
+ssh-copy-id -i <user>@<agent host>
+```
+
+![image](https://user-images.githubusercontent.com/96326288/210486610-dffe7761-5e54-4a0d-925d-32a88dd9d7f6.png)
+
 
 
