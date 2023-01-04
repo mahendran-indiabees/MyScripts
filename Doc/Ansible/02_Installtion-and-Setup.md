@@ -58,14 +58,14 @@ ssh-copy-id -i <user>@<agent host>
 vi /etc/ansible/hosts
 ```
 
-** Syntax for adding hosts **
+**Syntax for adding hosts**
 
 ```
 [groups]
 alias ansible_ssh_host=<ip>
 ```
 
-** Example **
+**Example**
 
 ```
 [DB_Host]
@@ -74,6 +74,8 @@ alias ansible_ssh_host=10.100.2.23
 ```
 
 ![image](https://user-images.githubusercontent.com/96326288/210487129-4ed813fc-c344-4dd9-9011-e125b157d166.png)
+
+![image](https://user-images.githubusercontent.com/96326288/210487934-ed7c2308-c453-446c-a7d2-9f4a3549a5f6.png)
 
 
 
