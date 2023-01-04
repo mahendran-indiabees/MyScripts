@@ -20,15 +20,17 @@ ansible --version
 
 ######  For our Understanding, Let assume we have below nodes
 
-
 **master node**
+```
 ansmaster
-
+```
 **Agent nodes**
+```
 ansnode1
 ansnode2
 ansnode3
 ansnode4
+```
 
 ######  Edit `/etc/hosts` file in ansible master node and add all agent nodes entries
 
@@ -49,6 +51,31 @@ ssh-copy-id -i <user>@<agent host>
 ```
 
 ![image](https://user-images.githubusercontent.com/96326288/210486610-dffe7761-5e54-4a0d-925d-32a88dd9d7f6.png)
+
+######  Update ansible hosts file `/etc/ansible/hosts` and add the entries of agent hosts
+
+```
+vi /etc/ansible/hosts
+```
+
+** Syntax for adding hosts **
+
+```
+[groups]
+alias ansible_ssh_host=<ip>
+```
+
+** Example **
+
+```
+[DB_Host]
+alias ansible_ssh_host=10.100.2.22
+alias ansible_ssh_host=10.100.2.23
+```
+
+![image](https://user-images.githubusercontent.com/96326288/210487129-4ed813fc-c344-4dd9-9011-e125b157d166.png)
+
+
 
 
 
