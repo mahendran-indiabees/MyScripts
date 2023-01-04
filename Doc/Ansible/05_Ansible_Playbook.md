@@ -1,4 +1,4 @@
-## How to check Disk space & free memory
+## 1. How to check Disk space & free memory
 ```
 ---
 - name: Check WebServer
@@ -10,4 +10,5 @@
 
   - name: Check free memory
     command: "free -m"
+...
 ```
