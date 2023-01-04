@@ -23,9 +23,14 @@ ansible -m ping all
 ansible all --list-hosts
 ```
 
-###### List specic group servers 
+###### List specic servers 
 ```
 ansible --list-hosts webserver
+```
+
+###### List specic group servers 
+```
+ansible --list-hosts webserver:DBserver
 ```
 
 ###### Execute linux command in agent nodes 
