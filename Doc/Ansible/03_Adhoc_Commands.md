@@ -74,20 +74,12 @@ ansible webserver -m copy -a "src=/etc/hosts dest=/tmp/hosts"
 ansible webserver -m fetch -a "src=/etc/hosts dest=/root"
 ```
 
-
-
+###### Get agent nodes details and filter specific info
 ```
-ansible db -i inventory -m setup -a "filter=ansible_mounts"
-ansible all -i inventory -m setup --tree ./setup
-ansible prod -i hosts -a "hostname"
-ansible prod -i hosts -a "df -hk"
-ansible localhost -m debug -a 'var=groups.keys()'
-ansible prod -m stat -a "path=/etc/environment"
+ansible webserver -m setup -a "filter=ansible_distribution"
+```
 
-
-
-
-ansible prod  -m shell -a "tail /var/log/messages | grep ansible-command | wc -l 
-ansible-doc -l | more | wc -l
+###### Get doc for moudules
+```
 ansible-doc yum
 ```
