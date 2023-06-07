@@ -16,6 +16,7 @@ foreach($hostvalue in $FileContent)
     else
     {
         echo "[Ping Failed] - Waiting for 10 seconds and retry the process ..."
+	Start-Sleep -Seconds 10
         echo "`n"
         ping $hostvalue -n 5 > null
             if($LASTEXITCODE -eq 0)
