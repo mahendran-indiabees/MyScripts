@@ -37,7 +37,7 @@ docker system df
 ```
 ![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/35bed768-85ed-4eb0-8f6e-fa871424a73c)
 
-#### To get the real time events from docker (If any issues docker, we can run this command to get real time events)
+#### To get the real time events from docker (If any issues in docker, we can run this command to get real time events)
 ```
 docker system events
 ```
