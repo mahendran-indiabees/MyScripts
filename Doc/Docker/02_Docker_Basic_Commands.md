@@ -14,7 +14,7 @@ docker -v
 ```
 docker
 ```
-#### To get specific docker command applicable options 
+#### To get specific docker command applicable options, we can  use help or man command
 ```
 docker <command> help
 
