@@ -43,7 +43,7 @@ docker system events
 ```
 ![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/11f38ed4-67dd-4fc9-8fd7-dac0071a39d3)
 
-#### To remove all stopped container, to remove all dangling / orphanned images and Build cache , to all unused networks, we can use below command
+#### To remove all stopped container, to remove all dangling / orphanned images and Build cache , to all remove unused networks, we can use below command
 ```
 docker system prune
 ```
