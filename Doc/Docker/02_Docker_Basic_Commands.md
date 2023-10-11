@@ -168,7 +168,7 @@ docker logs mywebapp
 ```
 ![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/e15063fb-18aa-48e7-bea4-db8d493330f3)
 
-#### To start /run OS related images (alpine, ubuntu, etc...), we need to mention some additional shell command. Because, this is not application image like httpd.
+#### To start /run OS related images (alpine, ubuntu, etc...), we need to start with interactive termimal option "-it". Because, this is not application image like httpd.
 ```
 docker run -d -it --name <container Name>  <image id> <shell command>
 docker run -d -it --name lightweightOS alpine /bin/sh
