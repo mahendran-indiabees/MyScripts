@@ -89,10 +89,11 @@ docker stop <conatiner name>
 docker pause <conatiner name>
 ```
 
-```
 * The main difference between the paused and stopped states is that the memory portion of the state is cleared when a container is stopped, whereas, in the paused state, its memory portion stays intact.
 
+```
 docker stop <container-id or container-name>
+```
 
 * When the above command is executed, the main container process receives a SIGTERM signal (by default), and after a grace period (default 10s as of writing), it receives a SIGKILLsignal.
 
@@ -100,4 +101,4 @@ docker stop <container-id or container-name>
 * SIGKILL is the kill signal. The only behaviour is to kill the process, immediately.
 * SIGSTOP is the pause signal. The only behaviour is to pause the process
 
-```
+
