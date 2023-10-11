@@ -13,6 +13,14 @@ docker images
 ```
 ![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/5daaa29d-4e58-4cb1-a214-e2ca67566b82)
 
+#### To check Docker Image commands
+```
+docker image
+```
+
+![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/2751d9ae-74d9-4e02-a8dc-5a8da33533a0)
+
+
 #### To Run Docker Images in container with Port
 
 ```
@@ -20,6 +28,8 @@ docker run -it --name <myapp> -p <Docker Host port>:<container port> <Image Name
 
 docker run -it --name myApp -p 8080:80 httpd
 ```
+![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/2c821e9d-482e-4868-b203-c41f51a1f6da)
+
 ![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/72dee180-be31-4f6e-a761-1e18183d8ab8)
 #### To Check Port forwarding
 
@@ -69,6 +79,25 @@ docker rm <container name>
 
 #### To get all docker images id and remove
 ```
-docker rmi 
+docker rmi $(docker images -a -q)
+```
+![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/509d854e-5e68-4f4e-ab0e-d7620290706d)
+
+#### To Stop and pause the conatiner
+```
+docker stop <conatiner name>
+docker pause <conatiner name>
 ```
 
+```
+* The main difference between the paused and stopped states is that the memory portion of the state is cleared when a container is stopped, whereas, in the paused state, its memory portion stays intact.
+
+docker stop <container-id or container-name>
+
+* When the above command is executed, the main container process receives a SIGTERM signal (by default), and after a grace period (default 10s as of writing), it receives a SIGKILLsignal.
+
+* SIGTERM is the signal of termination. The intention is to kill the process, gracefully or not, but to first allow it a chance to clean up.
+* SIGKILL is the kill signal. The only behaviour is to kill the process, immediately.
+* SIGSTOP is the pause signal. The only behaviour is to pause the process
+
+```
