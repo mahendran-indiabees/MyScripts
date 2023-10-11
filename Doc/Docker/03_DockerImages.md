@@ -1,10 +1,10 @@
 #### What is Docker Images?
-```
-A Docker image is an immutable (unchangeable) file that contains the source code, libraries, dependencies, tools, and other files needed for an application to run.
 
-Docker image informs how a container should instantiate, determining which software components will run and how. Docker images are platform-independent.
+* A Docker image is an immutable (unchangeable) file that contains the source code, libraries, dependencies, tools, and other files needed for an application to run.
 
-```
+* Docker image informs how a container should instantiate, determining which software components will run and how. Docker images are platform-independent.
+
+
 ![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/cee9edc9-4bf4-4053-a7d1-3b95a51a9f72)
 
 #### To check Docker Images
