@@ -51,7 +51,7 @@ docker inpsect httpd
 
 #### How to export / save image in tar file
 ```
-docker save <image id> > myname.tar
+docker save <image id> > myname.tar (or) docker save -o <path for generated tar file> <image name>
 docker save 87t3evveu8e3 > myname_v.0.0.1.tar
 ```
 ![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/b40b15a5-37b7-4c73-9d9f-27dd98ca33e9)
@@ -101,4 +101,43 @@ docker stop <container-id or container-name>
 * SIGKILL is the kill signal. The only behaviour is to kill the process, immediately.
 * SIGSTOP is the pause signal. The only behaviour is to pause the process
 
+#### To start and unpause the conatiner
+```
+docker start <conatiner name>
+docker unpause <conatiner name>
+```
 
+#### To List only stopped, running, paused container using filter option
+```
+docker container ls --filter "status=exited"
+```
+* Created - This means that the container was only created and not started.
+* Restarting - This state means that the container is being restarted.
+* Running - This means that the container is actively running.
+* Paused - This means that all the processes inside the container have been paused.
+* Exited - This means that the container has been stopped.
+* Dead - This means that an attempt to stop the container failed.
+
+![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/838f8d16-fc22-4b61-b029-501fe764d328)
+
+#### Differnce between docker save and docker export
+* The docker save command is used to save Docker images as a tar archive file (Include layers and history)
+* Also, docker save is used to save one or more images into a tar file
+* On the other hand, the docker export command is utilized to save the Docker container to a tar archive file. (without layers and history)
+* For saving the Docker image as a file, run the below command
+```
+docker save <image-name> -o <output-file-name>
+```
+* In order to save the Docker container as a file, utilize the below command
+```
+docker export -o <output-file-name> <container-name>
+```
+
+#### Differnce between docker import and docker load
+* import is used with the tarball which are created with docker export. load is used with the tarball which are created with docker save.
+* The “docker import” creates a new image from a file or a URL that contains a snapshot of a container’s filesystem. It does not preserve any metadata or history of the container’s filesystem.
+* In contrast, the “docker load” loads an image or a repository from a tar archive that was previously saved using “docker save”. It preserves all the metadata and history of the image or repository.
+```
+docker load -i <tar file name>
+docker import <tar file or tar file URL> <New Image name>
+```
