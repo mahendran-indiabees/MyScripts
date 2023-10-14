@@ -8,6 +8,8 @@ A Docker File is a simple text file with instructions on how to build your image
 INSTRUCTION arguments
 ```
 Instructions can be given in lowercase or uppercase letters. But to differentiate from the instructions and arguments, we use uppercase letters.
+
+
 #### Dockerfile example:
 ```
 #This is a sample Image 
@@ -18,8 +20,10 @@ RUN apt-get update
 RUN apt-get install –y nginx 
 CMD [“echo”,”Image created”] 
 ```
+
 #### FROM
 FROM instruction used to specify the valid docker image name. So specified Docker Image will be downloaded from docker hub registry if it is not exists locally.
+
 ```
 FROM docker.io/centos:latest
 FROM docker.io/centos:6
@@ -27,6 +31,7 @@ FROM docker.io/centos:6
 
 #### MAINTAINER
 MAINTAINER instruction is used to specify about the author who creates this new docker image for the support.
+
 ```
 MAINTAINER Administrator
 MAINTAINER admin @ learnitguide.net
@@ -34,6 +39,7 @@ MAINTAINER Devops Engineer(admin @ learnitguide.net)
 ```
 #### LABEL
 LABEL instruction is used to specify metadata informations to an image. A LABEL is a key-value  pair.
+
 ```
 LABEL "Application_Environment"="Development"
 LABEL "Application_Support"="LearnITGuide.net Group"
@@ -41,6 +47,7 @@ LABEL "Application_Support"="LearnITGuide.net Group"
 
 #### EXPOSE
 EXPOSE instruction is used to inform about the network ports that the container listens on runtime. Docker uses this information to interconnect containers using links and to set up port redirection on docker host system.
+
 ```
 EXPOSE 80 443
 EXPOSE 80/tcp 8080/udp
@@ -48,11 +55,11 @@ EXPOSE 80/tcp 8080/udp
 #### ADD
 ADD instruction is used to copy files, directories and remote URL files to the destination (docker container) within the filesystem of the Docker Images. Add instruction also has two forms - Shell Form and Executable Form.
 
-_Shell Form - ADD src dest_
+**Shell Form - ADD src dest**
 ```
 ADD /root/testfile /data/
 ```
-Executable Form - ADD ["src","dest"]
+**Executable Form - ADD ["src","dest"]**
 ```
 ADD /root/testfile /data/
 ```
@@ -60,6 +67,7 @@ If the "src" argument is a compressed file (tar, gzip, bzip2, etc) then it will 
 
 #### COPY
 COPY instruction is used to copy files, directories and remote URL files to the destination within the filesystem of the Docker Images. COPY instruction also has two forms - Shell Form and Executable Form.
+
 ```
 COPY src dest
 COPY /root/testfile /data/
@@ -83,13 +91,13 @@ RUN ["systemctl","start","httpd"]
 CMD instruction is used to set a command to be executed when running a container. There must be only one CMD in a Dockerfile. If more than one CMD is listed, only the last CMD takes effect.
 CMD instruction has two forms - Shell Form and Executable Form.
 
-Shell form:
+**Shell form:**
 ```
 CMD ping google.com
 CMD python myapplication.py
 ```
 
-Executable form:
+**Executable form:**
 ```
 CMD ["ping","google.com"]
 CMD ["python","myapplication.py"]
@@ -98,12 +106,12 @@ CMD ["python","myapplication.py"]
 #### ENTRYPOINT
 ENTRYPOINT instruction is used to configure and run a container as an executable. ENTRYPOINT instruction also has two forms - Shell Form and Executable Form.
 
-Shell form:
+**Shell form:**
 ```
 ENTRYPOINT ping google.com
 ENTRYPOINT python myapplication.py
 ```
-Executable form:
+**Executable form:**
 ```
 ENTRYPOINT ["ping","google.com"]
 ENTRYPOINT ["python","myapplication.py"]
