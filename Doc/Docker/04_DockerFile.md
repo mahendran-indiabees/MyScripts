@@ -48,7 +48,7 @@ EXPOSE 80/tcp 8080/udp
 #### ADD
 ADD instruction is used to copy files, directories and remote URL files to the destination (docker container) within the filesystem of the Docker Images. Add instruction also has two forms - Shell Form and Executable Form.
 
-**Shell Form - ADD src dest
+** Shell Form - ADD src dest
 ```
 ADD /root/testfile /data/
 ```
