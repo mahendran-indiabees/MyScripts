@@ -8,7 +8,6 @@ A Docker File is a simple text file with instructions on how to build your image
 INSTRUCTION arguments
 ```
 * Instructions can be given in lowercase or uppercase letters. But to differentiate from the instructions and arguments, we use uppercase letters.
-* 
 #### Dockerfile example:
 ```
 #This is a sample Image 
