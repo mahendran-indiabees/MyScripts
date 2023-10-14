@@ -61,7 +61,7 @@ ADD /root/testfile /data/
 ```
 **Executable Form - ADD ["src","dest"]**
 ```
-ADD /root/testfile /data/
+ADD ["/root/testfile","/data/"]
 ```
 If the "src" argument is a compressed file (tar, gzip, bzip2, etc) then it will extract at the specified "dest" in the container's filesystem.
 
