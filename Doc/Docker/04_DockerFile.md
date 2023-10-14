@@ -68,12 +68,13 @@ If the "src" argument is a compressed file (tar, gzip, bzip2, etc) then it will 
 #### COPY
 COPY instruction is used to copy files, directories and remote URL files to the destination within the filesystem of the Docker Images. COPY instruction also has two forms - Shell Form and Executable Form.
 
+**Shell Form - COPY src dest**
 ```
-COPY src dest
 COPY /root/testfile /data/
-(or)
-COPY ["src","dest"]
-COPY /root/testfile /data/
+```
+**Executable Form - COPY ["src","dest"]**
+```
+COPY ["/root/testfile","/data/"]
 ```
 If the "src" argument is a compressed file (tar, gzip, bzip2, etc), then it will copy exactly as a compressed file and will not extract.
 
