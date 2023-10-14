@@ -155,3 +155,21 @@ ENV app_version 2.0
 ```
 
 #### ARG
+ARG instruction is also used to set environment variables with key and value, but this variables will set only during the image build not on the container.
+
+```
+ARG TMP_NAME mycustom_image
+ARG TMP_VER 2.0
+```
+So both Docker ENV and ARG commands are used to set environment variables, but there are some differences in functionality, refer this link to understand the differences between Docker ENV and ARG Command with examples.
+
+#### ONBUILD
+ONBUILD instruction is used to specify a command that runs when the image in the Dockerfile is used as a base image for another image.
+
+```
+ONBUILD ADD . /app/data
+ONBUILD RUN yum install httpd
+```
+#### Difference between ADD and COPY
+![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/df7245b7-ab27-4dbb-bdb7-f159b695c457)
+
