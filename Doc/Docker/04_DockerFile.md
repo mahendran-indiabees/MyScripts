@@ -197,10 +197,9 @@ ONBUILD COPY index.html .
 Now above image is used for another build. This time Onbuild command is executed
 ![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/88108d6d-bab8-441e-ae56-09de73f323ad)
 
-###### How to pass argument values in Docker file
+#### How to pass argument values in Docker file
 ```
 docker build .. --build-arg <Var Name>=<Value>
 docker build .. --build-arg ANSI_VERSION=1.2
 docker build .. --build-arg BUILD_ID="${BUILD_ID}"
-```  
 
