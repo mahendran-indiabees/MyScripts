@@ -176,6 +176,7 @@ ONBUILD RUN yum install httpd
 #### ONBUILD command in Detail
 * The ONBUILD instruction adds to the image a trigger instruction to be executed at a later time when the image is used as the base for another build.
 * When ONBUILD instruction is encountered in Dockerfile, instruction is added to run later. We can inspect commands in image manifest file under OnBuild key. All the command registered in OnBuild will be executed in the sequence they appeared in Dockerfile.
+
 **Note:** ONBUILDinstructions using ONBUILD ONBUILDisn’t allowed. The ONBUILDinstruction may not trigger FROM or MAINTAINER instructions.
   
   
