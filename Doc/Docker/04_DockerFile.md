@@ -176,8 +176,31 @@ ONBUILD RUN yum install httpd
 #### ONBUILD command in Detail
 * The ONBUILD instruction adds to the image a trigger instruction to be executed at a later time when the image is used as the base for another build.
 * When ONBUILD instruction is encountered in Dockerfile, instruction is added to run later. We can inspect commands in image manifest file under OnBuild key. All the command registered in OnBuild will be executed in the sequence they appeared in Dockerfile.
-
+```
+ONBUILD COPY index.html .
+ONBUILD RUN mvn install
+```
 **Note:** ONBUILDinstructions using ONBUILD ONBUILDisn’t allowed. The ONBUILDinstruction may not trigger FROM or MAINTAINER instructions.
-  
-  
+**Example:**
+* Create below Docker file and add Onbuild instruction. 
+```
+FROM nginx:1.16-alpine
+LABEL Auther="Bhargav Shah"
+WORKDIR /usr/share/nginx/html
+ONBUILD COPY index.html .
+```
+* Then build and run the image using docker command
+![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/c966fa97-e327-4dc9-8bc4-16f375e44c2f)
+* Look below screenshot, Onbuild comamnd is not executed. Old index.html is present in container.
+![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/7ac14e8e-c475-49fc-9361-99f6a36c4db3)
+
+Now above image is used for another build. This time Onbuild command is executed
+![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/88108d6d-bab8-441e-ae56-09de73f323ad)
+
+###### How to pass argument values in Docker file
+```
+docker build .. --build-arg <Var Name>=<Value>
+docker build .. --build-arg ANSI_VERSION=1.2
+docker build .. --build-arg BUILD_ID="${BUILD_ID}"
+```  
 
