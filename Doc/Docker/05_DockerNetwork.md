@@ -40,3 +40,51 @@ Following are the types of Docker Networks:
 * Overlay networks facilitate the creation of distributed applications and ensure container connectivity even in complex scenarios involving multiple hosts. This type is particularly suitable for distributed applications and scaling scenarios.
 ![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/701dce1c-0d3d-44b1-8ce4-2cbe8e8ff347)
 
+#### Macvlan Networks
+* Macvlan networks allow you to assign a MAC address to a container, making it appear as a physical device on your network. The Docker daemon routes traffic to containers by their MAC addresses
+* Containers can be assigned specific IP addresses and directly communicate with external devices, just like regular physical machines. The Macvlan network is ideal for scenarios where containers require direct network access without NAT.
+
+#### Docker basic network command
+```
+docker network help
+```
+![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/e844a377-86f5-42cf-81d3-141c5d0d03c3)
+
+#### List down the Networks associated with Docker 
+```
+docker network ls 
+```
+![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/ac0153d7-0f34-491f-86a1-833950e0eafa)
+
+#### Inspect docker network
+```
+docker network inspect bridge
+```
+![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/1e854847-71ba-4eee-b314-df2eb7d3c227)
+
+#### Creating a Network
+```
+docker network create <Name>
+docker network create mynetwork
+
+docker network create -d <Driver Name> <Name>
+docker network create -d host mynetwork
+```
+![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/2ef0c159-3d79-4238-9847-eb3c38aeec2f)
+
+#### Connecting a Container to a Network
+```
+docker network connect <Container ID or name>
+```
+#### Disconnecting a Container to a Network
+```
+docker network disconnect <Container ID or name>
+```
+
+#### Run a container with specific network
+docker run -d --name my_container --network <mynetwork> my_image
+
+#### To check Port mapping for specific container
+```
+docker port <Container id / Name>
+```
