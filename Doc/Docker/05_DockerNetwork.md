@@ -1,4 +1,4 @@
-![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/27d2fe9f-a7ab-47dd-8d53-74839e6b94d5)#### What is Docker Network?
+#### What is Docker Network?
 Docker networking is primarily used to establish communication between Docker containers and the outside world via the host machine where the Docker daemon is running
 
 #### Types of Docker Network
