@@ -1,4 +1,4 @@
-#### What is Docker Network?
+![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/27d2fe9f-a7ab-47dd-8d53-74839e6b94d5)#### What is Docker Network?
 Docker networking is primarily used to establish communication between Docker containers and the outside world via the host machine where the Docker daemon is running
 
 #### Types of Docker Network
@@ -16,7 +16,8 @@ Following are the types of Docker Networks:
 * The Bridge network assigns IPs in the range of 172.17.x.x to the containers within it. To access these containers from outside you need to map the ports of these containers to the ports on the host.
 * It allows containers on the same host to communicate with each other using IP addresses and is ideal for most use cases.
 * Each container on the network gets its unique IP address and can be accessed using this address or the container’s name.
-![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/7f73efc1-80d0-49e9-9e01-feb986299ff1)
+![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/9afff6b4-e502-41f0-8fa7-d6b609a6a83b)
+
 
 ![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/c780865d-8cdb-4430-9199-bf891ef9527b)
 
