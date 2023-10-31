@@ -29,13 +29,14 @@ docker swarm init --advertise-addr <host ip>
 ```
 ![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/9fe77193-13e6-4e7e-8e20-63203a495b0f)
 
+
 **Note:** If you want to add another manager (For availability), You need to run below comamnd. Below command will generate token for add new manager node into our primary node.
 
 ```
 docker swarm join-token manager
 ```
 #### How to Join worker node into Manager node
-Get the token from manager node and run "docker swarm join" command in worker
+Get the token from manager node and run that "docker swarm join --token" command in worker nodes
 ```
 docker swarm join --token <token values and ip> 
 ```
@@ -68,12 +69,23 @@ docker service create --replicas 5 -p 9001:80 --name mywebappservice httpd
 ```
 docker service ls
 ```
-![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/3143930a-d30e-4764-b8f3-b0705321eb52)
+![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/0e06327d-6cd7-4f33-8cfe-273fb36ca04c)
+
 
 #### How to find the nodes which my containers are running
 ```
 docker service ps <service name>
 ```
+![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/3143930a-d30e-4764-b8f3-b0705321eb52)
 
-![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/0e06327d-6cd7-4f33-8cfe-273fb36ca04c)
+#### Usage of Global mode instead of Replicas
+There is two types of mode in docker service.
+**One is replicas** - user can define how many replicas need to create. Docker swarm will allocate the swarm nodes to run the container based on load, usage, etc... (For Example: If we set 5 replicas, 3 containers will node1 and 2 containers in node2 or manager node or vice versa)
+
+**Other one is Global** - If we set mode as global, container will run each node which we have created. (For Example: If we have three docker swarm nodes, docker service will run conatiner each node. which means it will run node 1, node 2 & manger node) 
+
+```
+docker service --mode global -p <port forwarding> --name <service name> <Image>
+```
+![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/dd47896c-9f13-4dc7-846e-298026e5665f)
 
