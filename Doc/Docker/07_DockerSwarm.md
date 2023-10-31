@@ -80,12 +80,31 @@ docker service ps <service name>
 
 #### Usage of Global mode instead of Replicas
 There is two types of mode in docker service.
-**One is replicas** - user can define how many replicas need to create. Docker swarm will allocate the swarm nodes to run the container based on load, usage, etc... (For Example: If we set 5 replicas, 3 containers will node1 and 2 containers in node2 or manager node or vice versa)
 
-**Other one is Global** - If we set mode as global, container will run each node which we have created. (For Example: If we have three docker swarm nodes, docker service will run conatiner each node. which means it will run node 1, node 2 & manger node) 
+**One is replicas** - User can define how many replicas need to create. Docker swarm will allocate the nodes to run the containers based on load, usage, etc... (For Example: If we set 5 replicas, 3 containers will run on node1 and 2 containers will run on node2 or manager node or vice versa)
+
+**Other one is Global** - If we set mode as global, container will run each node which we have created. (For Example: If we have three docker nodes, docker service will run container on each node which means it will run node1, node2 & manger node) 
 
 ```
 docker service --mode global -p <port forwarding> --name <service name> <Image>
 ```
 ![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/dd47896c-9f13-4dc7-846e-298026e5665f)
 
+#### Docker swarm network
+In default, Docker swarm will use Overlay driver (Ingress network). It enable the commuication between across the docker hosts.
+
+![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/c7213b2e-7f51-4078-bc44-f9bb26eddc90)
+
+#### Docker Scale up and down
+```
+docker service scale <service name>=<int>
+
+Let us consider, Currently two replicas is running. If we want to scale up to 5 replicas, run below commad. This command additional will create 3 replicas and other 2 will be running without any effect (Refer below screenshot. Check Container launch time)
+
+docker service scale mywebapp=5
+
+Let us consider, Currently five replicas is running. If we want to scale down to 2 replicas, run below commad.
+
+docker service scale mywebapp=2
+```
+![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/3c292391-cd6b-4715-bb8d-e34eb38e3616)
