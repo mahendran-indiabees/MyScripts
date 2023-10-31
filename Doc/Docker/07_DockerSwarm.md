@@ -99,7 +99,7 @@ In default, Docker swarm will use Overlay driver (Ingress network). It enable th
 ```
 docker service scale <service name>=<int>
 
-Let us consider, Currently two replicas is running. If we want to scale up to 5 replicas, run below commad. This command additional will create 3 replicas and other 2 will be running without any effect (Refer below screenshot. Check Container launch time)
+Let us consider, Currently two replicas is running. If we want to scale up to 5 replicas, run below commad.
 
 docker service scale mywebapp=5
 
@@ -107,4 +107,7 @@ Let us consider, Currently five replicas is running. If we want to scale down to
 
 docker service scale mywebapp=2
 ```
+
+This scale up command additionally will create replicas and existing will be running without any effect (Refer below screenshot. Check Container launch time)
+
 ![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/3c292391-cd6b-4715-bb8d-e34eb38e3616)
