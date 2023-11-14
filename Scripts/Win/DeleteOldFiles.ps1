@@ -30,7 +30,7 @@ try
     #Display Old files and store remove file list in txt file
     echo "Display older than [$OldFilesPeriod] days files in Directory"
     echo "******************************************************************"
-    $OldFilesContent=Get-ChildItem –Path  "$RemoveLogPath" -Attributes !Directory –Recurse -Exclude "$excludeFiles" | Where-Object { $_.CreationTime –lt (Get-Date).AddDays($OldFilesPeriod) }
+    $OldFilesContent=Get-ChildItem –Path  "$RemoveLogPath" -Attributes !Directory –Recurse -Exclude "$excludeFiles" | Where-Object { $_.LastWriteTime –lt (Get-Date).AddDays($OldFilesPeriod) }
     $OldFilesContent
    
     $StoreRemoveList=$RemoveLogPath+"DeletedFileList_$(get-date -f yyyy-MM-dd-ss).txt"
@@ -44,7 +44,7 @@ try
     #Delete delete Old Files
     echo "Remove File : [$RemoveLogPath] : STARTED - $(get-date -f yyyy/MM/dd/ss)"
     echo "-------------------------------------------------"
-    Get-ChildItem –Path  "$RemoveLogPath" -Attributes !Directory –Recurse -Exclude "$excludeFiles" | Where-Object { $_.CreationTime –lt (Get-Date).AddDays($OldFilesPeriod) } | Remove-Item -Verbose -Force 
+    Get-ChildItem –Path  "$RemoveLogPath" -Attributes !Directory –Recurse -Exclude "$excludeFiles" | Where-Object { $_.LastWriteTime –lt (Get-Date).AddDays($OldFilesPeriod) } | Remove-Item -Verbose -Force 
     echo "-------------------------------------------------"
     echo "Files Deleted"
     echo "Remove File : [$RemoveLogPath] : COMPLETED - $(get-date -f yyyy/MM/dd/ss)"
