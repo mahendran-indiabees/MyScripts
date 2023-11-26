@@ -186,7 +186,7 @@ https_port=9001
  ...
 ```
 
-c) Best pratcies : create group_vars/<group name> and host_vars/<hostname> in inventory file dirctory
+c) Best pratcies : create group_vars/[group name] and host_vars/[hostname] in inventory file dirctory
 
 Sample structure for group_vars and host_vars
 
