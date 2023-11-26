@@ -103,7 +103,7 @@ ansible-playbook myfile.yaml -e @envs_var.yaml
   host: webservers
   vars:
    Platform:
-    [linux,windows]
+    [ linux,windows ]
   tasks:
    - name: This is test
      debug:
