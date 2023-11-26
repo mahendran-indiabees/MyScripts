@@ -1,6 +1,6 @@
 ## Yaml Basic rules
 
-```
+
 * Space characters is used for intentation 
 
 * Do not use Tab for intentation
@@ -9,8 +9,8 @@
 
 * It is key value pair based
 
-* Symbol '-' is used to list the items
-```
+* **Note :** In ansible playbook will have one or more plays. Each play have one or more tasks
+
 
 ## Yaml Basic syntax
 
