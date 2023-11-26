@@ -11,7 +11,7 @@ Variables can  be defined into three scopes
 ```
 ansible-playbook myfile.yaml -e "BUILD_ID=12"
 ```
-###### a) b) Sample Playbook to get variable value
+###### a) Sample Playbook to get variable value
 ```
 ---
 - name: This is for get value from variables
