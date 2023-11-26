@@ -44,3 +44,32 @@ ansible-playbook myfile.yaml -e @envs_var.yaml
       msg: "{{ BUILD_ID}}"
  ...
 ```
+
+
+#### Play Scope variables
+###### a) Sample Playbook for define variables using vars keyword
+---
+- name: This is for get value from variables
+  host: webservers
+  vars:
+   BUILD_ID=12
+  tasks:
+   - name: This is test
+     debug:
+      msg: "{{ BUILD_ID}}"
+ ...
+```
+###### a) Sample Playbook for define variables using vars keyword
+---
+- name: This is for get value from variables
+  host: webservers
+  vars:
+   Platform:
+    Linux: "/app/workspace"
+    windows: "c:\"
+  tasks:
+   - name: This is test
+     debug:
+      msg: "{{ Platform.Linux }}"
+ ...
+```
