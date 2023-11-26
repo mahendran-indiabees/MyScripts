@@ -21,11 +21,11 @@ mainExecution.yaml
   tasks:
     - name: Install software
       Include: installation.yaml
-       vars:
-        PackageName: httpd
-        ServiceName: httpd
-        ServiceState: started
-       register: captureOutput
+      vars:
+       PackageName: httpd
+       ServiceName: httpd
+       ServiceState: started
+      register: captureOutput
     - name: Display Installation output
       debug:
        msg: "{{ captureOutput }}"  
