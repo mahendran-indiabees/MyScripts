@@ -48,6 +48,7 @@ ansible-playbook myfile.yaml -e @envs_var.yaml
 
 #### Play Scope variables
 ###### a) Sample Playbook for define variables using vars keyword
+```
 ---
 - name: This is for get value from variables
   host: webservers
@@ -59,7 +60,8 @@ ansible-playbook myfile.yaml -e @envs_var.yaml
       msg: "{{ BUILD_ID}}"
  ...
 ```
-###### a) Sample Playbook for define variables using vars keyword
+###### b) Sample Playbook for define variables using dict
+```
 ---
 - name: This is for get value from variables
   host: webservers
@@ -71,5 +73,20 @@ ansible-playbook myfile.yaml -e @envs_var.yaml
    - name: This is test
      debug:
       msg: "{{ Platform.Linux }}"
+ ...
+```
+###### C) Sample Playbook for define variables using lsi
+```
+---
+- name: This is for get value from variables
+  host: webservers
+  vars:
+   Platform:
+    - Linux
+    - Windows
+  tasks:
+   - name: This is test
+     debug:
+      msg: "{{ Platform.0 }}"
  ...
 ```
