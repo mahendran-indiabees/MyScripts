@@ -113,3 +113,29 @@ ansible-playbook myfile.yaml -e @envs_var.yaml
       msg: "{{ Platform[1] }}"
  ...
 ```
+###### d) Pass variables in external file json / yaml
+external_vars.yaml
+```
+---
+BUILD_ID=12
+CUSTOM_DIR=/app/directoty
+CUSTOM_PLATFORM
+ Linux: bash
+ windows: powsershell
+...
+```
+```
+---
+- name: This is for get value from variables
+  host: webservers
+  vars_files:
+   - external_vars.yaml
+  tasks:
+   - name: This is test
+     debug:
+      msg: "{{ BUILD_ID }}"
+   - name: This is test1
+     debug:
+      msg: "{{ CUSTOM_PLATFORM['Linux'] }}"
+ ...
+```
