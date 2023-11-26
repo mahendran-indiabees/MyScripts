@@ -139,3 +139,65 @@ CUSTOM_PLATFORM
       msg: "{{ CUSTOM_PLATFORM['Linux'] }}"
  ...
 ```
+#### Host Scope variables
+###### a) define variables in Inventory file (hosts file)
+
+a) Sample inventory file for individual host
+```
+LINUX01 ansible_ssh_host=10.100.1.2 ansible_port=22 http_port=80 https_port=443
+LINUX02 ansible_ssh_host=10.100.1.3
+```
+```
+- name: This is for get value from variables
+  host: LINUX01
+  tasks:
+   - name: This is test
+     debug:
+      msg: "{{ hostvars[ansible_hostname]['https_port'] }}"
+ ...
+```
+a) For avoid error if your host does not contains variable, please add default keyword
+```
+- name: This is for get value from variables
+  host: LINUX02
+  tasks:
+   - name: This is test
+     debug:
+      msg: "{{ hostvars[ansible_hostname]['https_port'] | default('') }}"
+ ...
+```
+b) Sample inventory file for groups
+```
+[webservers]
+LINUX01 ansible_ssh_host=10.100.1.2
+LINUX02 ansible_ssh_host=10.100.1.3
+
+[webservers:vars]
+https_port=9001
+```
+
+```
+- name: This is for get value from variables
+  host: webservers
+  tasks:
+   - name: This is test
+     debug:
+      msg: "{{ hostvars[ansible_hostname]['https_port'] }}"
+ ...
+```
+
+c) Best pratcies : create group_vars/<group name> and host_vars/<hostname> in inventory file dirctory
+
+Sample structure for group_vars and host_vars
+
+![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/ece9d305-a3a7-4b5b-9048-1d4fb6f5ed7e)
+
+```
+- name: This is for get value from variables
+  host: webservers
+  tasks:
+   - name: This is test
+     debug:
+      msg: "{{ ['https_port'] }}"
+ ...
+```
