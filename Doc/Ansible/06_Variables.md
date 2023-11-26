@@ -5,3 +5,20 @@ Variables can  be defined into three scopes
 * **Play Scope:** This variables are defining in play area in playbook
   
 **Note:** If variables are defined in multiple scopes, Global scope will take priority. [ Global > Host > Play ]
+
+#### Global Scope variables
+###### Ansible command
+```
+ansible-playbook myfile.yaml -e "BUILD_ID=12"
+```
+###### Playbook
+```
+---
+- name: This is for get value from variables
+  host: webservers
+  tasks:
+   - name: This is test
+     debug:
+      msg: "{{ BUILD_ID}}"
+ ...
+```
