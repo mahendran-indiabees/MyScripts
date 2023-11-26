@@ -73,9 +73,12 @@ ansible-playbook myfile.yaml -e @envs_var.yaml
    - name: This is test
      debug:
       msg: "{{ Platform.Linux }}"
+   - name: This is test1
+     debug:
+      msg: "{{ Platform['windows'] }}"
  ...
 ```
-###### C) Sample Playbook for define variables using lsi
+###### C) Sample Playbook for define variables using list
 ```
 ---
 - name: This is for get value from variables
@@ -88,5 +91,25 @@ ansible-playbook myfile.yaml -e @envs_var.yaml
    - name: This is test
      debug:
       msg: "{{ Platform.0 }}"
+   - name: This is test1
+     debug:
+      msg: "{{ Platform[1] }}"
+ ...
+```
+###### d) Sample Playbook for define variables using inline list
+```
+---
+- name: This is for get value from variables
+  host: webservers
+  vars:
+   Platform:
+    [linux,windows]
+  tasks:
+   - name: This is test
+     debug:
+      msg: "{{ Platform.0 }}"
+   - name: This is test1
+     debug:
+      msg: "{{ Platform[1] }}"
  ...
 ```
