@@ -79,6 +79,7 @@ hostvars is a magic variable that allows accessing all the variables defined for
 
 #### Static custom facts:
 Create a fact file in /etc/ansible/facts.d/mycustom.fact
+
 mycustom.fact
 ```
 {
@@ -99,6 +100,7 @@ In Playbook
 ```
 #### Dynamic custom facts:
 Create a fact file in /etc/ansible/facts.d/mycustom.fact
+
 mycustom.fact
 ```
 #!/bin/bash
