@@ -4,6 +4,11 @@
 * These facts can be related to hardware, network, software, or any other information that can be queried from a remote host.
 
 #### List all facts in remote system
+In Adhoc Command Line
+```
+ansible myhostgroup -m setup
+```
+In Playbook
 ```
 ---
 - name: Print all available facts
