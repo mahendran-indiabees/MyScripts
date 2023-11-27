@@ -99,7 +99,7 @@ In Playbook
 ...
 ```
 #### Dynamic custom facts:
-Create a fact file in /etc/ansible/facts.d/mycustom.fact
+Create a fact file in /etc/ansible/facts.d/mycustom.fact and make it as executable format
 
 mycustom.fact
 ```
