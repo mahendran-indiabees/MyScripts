@@ -69,3 +69,51 @@ hostvars is a magic variable that allows accessing all the variables defined for
 - hosts: whatever
   gather_facts: false
 ```
+#### Custom facts
+* There are two types of custom facts: **data** and **code**. Data (Static content) is just read from a file, and code (small snippet) is executed and its output is accepted as data.
+* Both facts are usually located in /etc/ansible/facts.d/ directory on the remote machine and both have extension of .fact (example: /etc/ansible/facts.d/date.fact).
+```
+- hosts: whatever
+  gather_facts: false
+```
+
+#### Static custom facts:
+Create a fact file in /etc/ansible/facts.d/mycustom.fact
+mycustom.fact
+```
+{
+"JAVA_JDK" : "REDHAT"
+}
+```
+In Playbook
+```
+---
+- name: Print all available facts
+  host: webserver
+  gather_facts: true
+  tasks:
+   - name: Display Remote host custom facts
+     debug:
+     msg: hostvars[InventoryHostname]['ansible_local']['JAVA_JDK']
+...
+```
+#### Dynamic custom facts:
+Create a fact file in /etc/ansible/facts.d/mycustom.fact
+mycustom.fact
+```
+#!/bin/bash
+DATE=`date`
+echo "{\"date\" : \"${DATE}\"}"
+```
+In Playbook
+```
+---
+- name: Print all available facts
+  host: webserver
+  gather_facts: true
+  tasks:
+   - name: Display Remote host custom facts
+     debug:
+     msg: hostvars[InventoryHostname]['ansible_local']['date']
+...
+```
