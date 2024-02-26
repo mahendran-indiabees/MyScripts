@@ -100,3 +100,42 @@ pipeline {
 }
 
 ```
+
+```
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/your/endevor-repo.git'
+            }
+        }
+
+        stage('Build and Compile') {
+            steps {
+                script {
+                    sh "zowe submit local-file jcl/compile.jcl"
+                }
+            }
+        }
+
+        stage('Deploy to Endevor') {
+            steps {
+                script {
+                    sh "zowe endevor deploy element dataset-name"
+                }
+            }
+        }
+
+        // Add more stages for testing, deployment, etc.
+
+        stage('Cleanup') {
+            steps {
+                // Perform cleanup tasks
+            }
+        }
+    }
+}
+
+```
