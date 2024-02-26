@@ -28,6 +28,10 @@ Here's an example of a JCL script to compile a COBOL program:
 /*
 
 ```
+```
+zowe submit local-file "LOCAL/PATH/TO/compile.jcl"
+```
+
 ## Check Compilation Output:
 You can use the jobs view command to check the status of your submitted job and view the output.
 ```
