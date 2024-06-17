@@ -303,13 +303,12 @@ git log --oneline
 #### Ignore file
 The .gitignore file is used to tell Git which files (or patterns of files) it should ignore. This is useful for preventing certain files from being tracked and included in version control, such as temporary files, build artifacts, and sensitive information.
 
-
-* Create the .gitignore File:
+1. Create the .gitignore File:
   ```
   touch .gitignore
   ```
   
-* Add the file Name or Patterns to the .gitignore File which you want to ignore in version control: (Example below)
+2. Add the file Name or Patterns to the .gitignore File which you want to ignore in version control: (Example below)
   ```
   *.log
 tmp/
@@ -324,7 +323,7 @@ coverage/
 
   ```
 
-* Commit the .gitignore File and push to remote
+3. Commit the .gitignore File and push to remote
 ```
 git add .gitignore
 git commit -m "Add .gitignore file"
