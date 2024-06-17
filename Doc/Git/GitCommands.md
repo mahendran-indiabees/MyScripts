@@ -72,7 +72,7 @@ git add .
 #### git commit
 git commit command will commit your staged files to local repository.
 
-Below command will commit your changes to local repository with commit messages
+Below command will commit your changes to local repository with your custom commit messages
 ```
 git commit -m "Your Commit messages"
 ```
@@ -81,3 +81,67 @@ If you want to overwrite previous/recent commit messages / history in local repo
 ```
 git commit --amend -m "Your New Commit messages"
 ```
+
+#### git push
+git push command will push your local repo changes to Remote Server
+
+Below command will push commits from your local repository to a remote repository.
+```
+git push -u origin <Your Branch Name>
+```
+
+When you use below "git push" command, it pushes your changes to the specified remote and branch. If you don't specify a remote or branch, Git will use the default remote (usually origin) and the currently checked-out branch
+```
+git push
+```
+
+#### git diff
+git diff commands helps to compare the difference between the files, commits, Branches, etc. It compares the changes made in the working directory, staging area, or between commits
+
+To check changes between your changed files in working directory and Staging area
+```
+git diff
+```
+
+To check changes between Staged files (i.e., changes that are staged but not yet committed)and last commit (or) HEAD (or) Recently pushed changes
+```
+git diff --staged
+```
+
+To check difference/changes betweeen two commit ids
+```
+git diff <commitID1> <commitID2>
+```
+
+To check difference/changes betweeen your working directory and specified branch
+```
+git diff <your branchName>
+```
+
+To check difference/changes betweeen two branches
+```
+git diff <BranchName1>..<BranchName2>
+```
+
+#### git reset
+The git reset command is used to reset / undo the changes. Using this commands, we can reset the changes to specific commit.
+
+You have committed the changes in local repository and you want to reset to specific  commit or previous commit. You have to run below command. This command will reset to your specific commit id. (Note: '--soft' : Changes will be discarded in your local repo / commit history. But still your changes available in Staging Area & working directory)
+```
+git reset <Previous or Specific commit ID> --soft
+```
+
+If you want to reset the changes in Local repo as well as Staging Area. Run below command. (Note: '--mixed' : Changes will be discarded in your local repo / commit history as well as Staging Area. But still changes available in Working directory "--mixed" will taken as default if you don't specify any arguments)
+```
+git reset <Previous or Specific commit ID> --mixed
+```
+(or)
+```
+git reset <Previous or Specific commit ID>
+```
+
+If you want to reset the changes in Local repo, Staging Area as well as working directory. Run below command. (Note: '--hard' : Changes will be discarded in your local repo / commit history, Staging Area as well as working directory
+```
+git reset <Previous or Specific commit ID> --hard
+```
+
