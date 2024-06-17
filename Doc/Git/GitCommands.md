@@ -69,7 +69,11 @@ To add all modfiled/added files in current directory to Staging Area
 ```
 git add .
 ```
-
+#### git status
+The git status command is used to display the state of the working directory and the staging area. This command provideinformation about which branch you're on, Changed files, What are the files yet to add in Staging Area.
+```
+git status
+```
 #### git commit
 git commit command will commit your staged files to local repository.
 
@@ -185,3 +189,113 @@ If you want to revert the changes for specific commit range.
 git revert <My First bad commit ID>..<My Last bad commit ID>
 ```
 
+
+#### git merge
+git merge is used to merge or integrate the changes from one branch into another barnch (or) git merge is a way of combining changes from one branch (source branch) into another branch (target branch).
+
+The git merge command takes the contents of a source branch and integrates it with the target branch. It preserves the history of both branches by creating a new merge commit.
+
+![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/8590cba7-186f-4393-abde-08d99f14ad8e)
+
+
+```
+git checkout <targetBranch>
+
+git merge <sourceBranch>
+(or)
+git merge <sourceBranch> -m "Your commit messages"
+
+git push
+```
+
+#### git rebase
+The git rebase command integrates changes from one branch into another by moving or combining a sequence of commits to a new base commit. It rewrites the commit history.
+
+![image](https://github.com/mahendran-indiabees/MyScripts/assets/96326288/349d886d-4418-4dd3-85b2-0b9c2099c0a4)
+
+
+```
+git checkout <targetBranch>
+
+git rebase <sourceBranch>
+```
+
+#### git tag
+Git tags are used to mark specific points in a repository’s history as important. Typically, they are used to mark release points (e.g., v1.0, v2.0). It is typically used to label important commit id or milestones or releases, such as a version, release or a major project update 
+
+```
+git tag -a <tagName> -m "Tag custom messges"
+```
+
+#### git stash
+The git stash command is used to temporarily save changes in your working directory that are not yet ready to be committed. This allows you to switch branches or perform other tasks without having to commit unfinished work. When you're ready to continue working on those changes, you can retrieve them from the stash.
+
+To Stash your current changes, You can below command
+```
+git stash
+```
+
+To list all the stashes
+```
+git stash list
+```
+
+To retrive / restore temporarily Saved changes into Working directory, Run below command
+```
+git stash pop
+```
+```
+git stash pop <Index>
+```
+
+
+#### git branch
+To List all branches (both Local & remote)
+```
+git branch -a
+```
+
+To List all remote branches
+```
+git branch -r
+```
+
+To Create a new branch, Run below command. This command will create a new branch from currently your checked out branch
+```
+git branch <branch Name>
+```
+
+
+#### git checkout/switch
+git checkout/switch helps to switch the branches.
+```
+git switch <branchName>
+```
+(or)
+```
+git checkout <branchName>
+```
+
+
+To create a new branch from currently your checked out branch and switch to newly created branch, run below command
+```
+git checkout -b <branchName>
+```
+
+
+#### git Clone
+git clone commands helps to checkout/clone/download remote repository into local repo
+```
+git clone <git remote Url>
+```
+
+#### git log
+git log commands helps to display the log of commit history
+```
+git log
+```
+
+To display log commit history in short form, Run below commit
+```
+git log --oneline
+```
