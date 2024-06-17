@@ -70,7 +70,7 @@ To add all modfiled/added files in current directory to Staging Area
 git add .
 ```
 #### git status
-The git status command is used to display the state of the working directory and the staging area. This command provideinformation about which branch you're on, Changed files, What are the files yet to add in Staging Area.
+The git status command is used to display the state of the working directory and the staging area. This command provide information about which branch you're in, Changed files info, What are the files you have to add in Staging Area.
 ```
 git status
 ```
@@ -298,4 +298,34 @@ git log
 To display log commit history in short form, Run below commit
 ```
 git log --oneline
+```
+
+#### Ignore file
+The .gitignore file is used to tell Git which files (or patterns of files) it should ignore. This is useful for preventing certain files from being tracked and included in version control, such as temporary files, build artifacts, and sensitive information.
+
+
+* Create the .gitignore File:
+  ```
+  touch .gitignore
+  ```
+  
+* Add the file Name or Patterns to the .gitignore File which you want to ignore in version control: (Example below)
+  ```
+  *.log
+tmp/
+*.tmp
+node_modules/
+.env
+.DS_Store
+/build
+/dist
+.idea/
+coverage/
+
+  ```
+
+* Commit the .gitignore File and push to remote
+```
+git add .gitignore
+git commit -m "Add .gitignore file"
 ```
