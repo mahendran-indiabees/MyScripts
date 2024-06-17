@@ -220,6 +220,14 @@ git checkout <targetBranch>
 git rebase <sourceBranch>
 ```
 
+#### git cherry-pick
+git cherry-pick is a command helps to pick a specific commit from one branch and integrate into another branch. (Incase of Merge and Rebase, Your changes in the Source branch completly integrated/merged into target branch. But Cherry-pick allows you to pick specific commit in source branch and integrate into target branch)
+```
+git checkout <targetBranch>
+git cherry-pick <commit ID>
+```
+
+
 #### git tag
 Git tags are used to mark specific points in a repository’s history as important. Typically, they are used to mark release points (e.g., v1.0, v2.0). It is typically used to label important commit id or milestones or releases, such as a version, release or a major project update 
 
