@@ -47,7 +47,7 @@ git config --global user.email "you@example.com"
 
 ```
 
-#### Git init
+#### git init
 To initilize empty git repository
 ```
 git init <directory>
@@ -57,7 +57,7 @@ To initilize empty git repository in current directory / folder
 git init
 ```
 
-#### Git add
+#### git add
 git add helps to add your files to Staging Area (Note: We need to add modified/added files to Staging Area before run "git commit" command. If you not staged, files will not be commited when you run "git commit" command)
 
 To add specific file to Staging Area
@@ -69,4 +69,15 @@ To add all modfiled/added files in current directory to Staging Area
 ```
 git add .
 ```
+#### git commit
+git commit command will commit your staged files to local repository.
 
+Below command will commit your changes to local repository with commit messages
+```
+git commit -m "Your Commit messages"
+```
+
+If you want to overwrite previous/recent commit messages / history in local repository (Note: Not Pushed to remote), Run below command
+```
+git commit --amend -m "Your New Commit messages"
+```
