@@ -69,6 +69,7 @@ To add all modfiled/added files in current directory to Staging Area
 ```
 git add .
 ```
+
 #### git commit
 git commit command will commit your staged files to local repository.
 
@@ -94,6 +95,21 @@ When you use below "git push" command, it pushes your changes to the specified r
 ```
 git push
 ```
+
+#### git fetch
+git fetch commands are used to sync your local repository with a remote repository. It retrieves commits, files, and references (branches, tags, etc.) from a remote repository into your local repository, but it does not automatically merge or modify your working directory. (In simple words, git fetch will pull latest changes from remote and update into local repo without affecting working directory)
+```
+git fetch
+```
+
+#### git pull
+git pull commands also used to sync your local repository with a remote repository. It retrieves commits, files, and references (branches, tags, etc.) from a remote repository into your local repository. 
+Note: Also, It will update / modfify remote changes into your working directory.(In Simple words, git pull command is combination of git fetch and git merge)
+
+```
+git pull
+```
+
 
 #### git diff
 git diff commands helps to compare the difference between the files, commits, Branches, etc. It compares the changes made in the working directory, staging area, or between commits
@@ -168,3 +184,4 @@ If you want to revert the changes for specific commit range.
 ```
 git revert <My First bad commit ID>..<My Last bad commit ID>
 ```
+
