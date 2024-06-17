@@ -58,11 +58,15 @@ git init
 ```
 
 #### Git add
-To initilize empty git repository
+git add helps to add your files to Staging Area (Note: We need to add modified/added files to Staging Area before run "git commit" command. If you not staged, files will not be commited when you run "git commit" command)
+
+To add specific file to Staging Area
 ```
-git init <directory>
+git add <fileName>
 ```
-To initilize empty git repository in current directory / folder
+
+To add all modfiled/added files in current directory to Staging Area 
 ```
-git init
+git add .
 ```
+
