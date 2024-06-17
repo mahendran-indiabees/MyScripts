@@ -126,7 +126,7 @@ git diff <BranchName1>..<BranchName2>
 #### git reset
 The git reset command is used to reset / undo the changes. Using this commands, we can reset the changes to specific commit.
 
-You have committed the changes in local repository and you want to reset to specific  commit or previous commit. You have to run below command. This command will reset to your specific commit id. (Note: '--soft' : Changes will be discarded in your local repo / commit history. But still your changes available in Staging Area & working directory)
+You have committed the changes in local repository and you want to reset the changes to specific  commit or previous commit. You have to run below command. This command will reset to your specific commit id. (Note: '--soft' : Changes will be discarded in your local repo / commit history. But still your changes available in Staging Area & working directory)
 ```
 git reset <Previous or Specific commit ID> --soft
 ```
@@ -145,3 +145,26 @@ If you want to reset the changes in Local repo, Staging Area as well as working 
 git reset <Previous or Specific commit ID> --hard
 ```
 
+We can also reset the changes which you already pushed to Remote repo. We can use same commands for reset the chages. But Additionally we need to use git push command to push our changes to Remote
+```
+git reset <Previous or Specific commit ID> --[hard/soft/mixed]
+git push -f origin <branchName>
+```
+
+#### git revert
+git revert command is used to revert / rollback / undo the changes for specific commit. git revert command preserves the history by adding a new commit.
+
+If you want to revert the changes for specific commit.
+```
+git revert <commit ID>
+```
+
+If you want to revert the changes for multiple commit.
+```
+git revert <commit ID1> <commit ID2> <commit ID3>
+```
+
+If you want to revert the changes for specific commit range.
+```
+git revert <My First bad commit ID>..<My Last bad commit ID>
+```
