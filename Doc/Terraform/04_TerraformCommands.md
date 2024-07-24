@@ -129,20 +129,23 @@ terraform providers
 
 ## Terraform command with useful Arguments:
 
-| Commands             | Description |
+| **Commands**             | **Description** |
 | :---------------- | :------ | 
-| terraform plan | Show changes required by the current configuration  | 
-| terraform plan -out=<file>  | Write the plan to a file to apply it later | 
-| terraform plan -target <resource>  | Create a plan for a specific module or resource | 
-| terraform plan -replace <resource>  | Force the plan to replace a specific resource | 
-| terraform plan -var '<key>=<value>'  | Set a value for one of the input variables | 
-| terraform plan -refresh-only |  Inspect resource drift without updating the state file | 
-| terraform apply |  Create or update infrastructure | 
-| terraform apply <file>  | Create or update infrastructure using a plan file | 
-| terraform apply -target <resource>  | Create or update a specific resource | 
-| terraform apply -replace <resource>  | Force the replacement of a specific resource | 
-| terraform apply -auto-approve  | Skip interactive approval of plan before applying | 
-| terraform output  | Show all output values
-| terraform output -json  | Show all output values in JSON format
-| terraform output <name>  | Show a specific output value
-| terraform output -raw <name>  | Show a specific output value without quotes
+| **terraform init -get-plugins=false** | Initialize the working directory, do not download plugins |
+| **terraform init -migrate-state** | Reconfigure a backend, and attempt to migrate any existing state. This command is typically used when you have reconfigured your backend settings in your terraform configuration. |
+| **terraform init -verify-plugins=false** | Initialize the working directory, do not verify plugins for Hashicorp signature |
+| **terraform init -get-plugins=false** | Initialize the working directory, do not download plugins |
+| **terraform plan -out=myplan.tfplan**  | Write the plan to *.tfplan file. This can be used for review the changes| 
+| **terraform plan -target resourceName**  | Create a plan for a specific module or resource | 
+| **terraform plan -replace resourceName**  | Force the plan to replace a specific resource | 
+| **terraform plan -var keyName=value**  | Pass in a variable value in command line when run plan command | 
+| **terraform plan -refresh-only** |  This command refreshes the state file by querying the provider to get the latest information about the existing infrastructure but does not perform any other actions such as creating, updating, or destroying resources. | 
+| **terraform apply myplan.tfplan** | Create or update infrastructure using a specific plan file | 
+| **terraform apply -target resourceName**  | Create or update a specific resource | 
+| **terraform apply -replace resourceName**  | Force the replacement of a specific resource | 
+| **terraform apply -auto-approve**  | Apply changes without having to interactively type ‘yes’ to the plan | 
+| **terraform apply -var "keyName=value"**  | Pass in a variable value in command line when run apply command |
+| **terraform apply -parallelism=int** | Specify the number of operations run in parallel |
+| **terraform output -json**  | Show all output values in JSON format
+| **terraform output (Name)** | Show a specific output value
+| **terraform output -raw (name)** | Show a specific output value without quotes
