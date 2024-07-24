@@ -16,7 +16,7 @@
 
 
 ## Stages of Terraform
-* Write the code
+* Write the configuration file
   
 * Review the plan
   
