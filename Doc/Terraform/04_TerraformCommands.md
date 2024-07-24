@@ -65,7 +65,7 @@ terraform output
 terraform show
 ```
 
-## Terraform state:
+## Terraform state
 The terraform state command allows you to manage and inspect the Terraform state. It provides insights into the current state of your infrastructure.
 
 ```
@@ -87,7 +87,7 @@ The terraform taint command will unmarked a resource which we tainted
 terraform untaint <ResourceType>.<ResourceName>
 ```
 
-# Terraform destroy
+## Terraform destroy
 The terraform destroy command destroys the infrastructure managed by your Terraform configuration. It removes all the resources that were created.
 
 ```
