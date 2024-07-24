@@ -38,7 +38,12 @@ Terraform state is a critical component of Terraform that records or track all t
 
 * Their primary purpose is to allow for the execution of additional steps that Terraform's resource providers cannot handle directly, such as bootstrapping software or performing cleanup tasks.
 
-###### There are two main types of provisioners: 
+#### There are two main types of provisioners: 
 * **Local provisioners** execute commands on the machine running Terraform, which is typically used for tasks that prepare or modify local files or data.
   
-* **Remote provisioners** run commands on the provisioned infrastructure itself. 
+* **Remote provisioners** run commands on the provisioned infrastructure itself.
+
+## Modules
+* A Terraform module is a collection of Terraform configuration files that are grouped together.
+  
+* Modules are a powerful way to improve the code reusability and maintainability of Terraform configurations
