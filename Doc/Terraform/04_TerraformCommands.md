@@ -126,3 +126,23 @@ The `terraform providers` command lists the providers used in the current config
 ```
 terraform providers
 ```
+
+## Terraform command with useful Arguments:
+
+| Commands             | Description |
+| :---------------- | :------: | 
+| terraform plan | Show changes required by the current configuration  | 
+| terraform plan -out=<file>  | Write the plan to a file to apply it later | 
+| terraform plan -target <resource>  | Create a plan for a specific module or resource | 
+| terraform plan -replace <resource>  | Force the plan to replace a specific resource | 
+| terraform plan -var '<key>=<value>'  | Set a value for one of the input variables | 
+| terraform plan -refresh-only |  Inspect resource drift without updating the state file | 
+| terraform apply |  Create or update infrastructure | 
+| terraform apply <file>  | Create or update infrastructure using a plan file | 
+| terraform apply -target <resource>  | Create or update a specific resource | 
+| terraform apply -replace <resource>  | Force the replacement of a specific resource | 
+| terraform apply -auto-approve  | Skip interactive approval of plan before applying | 
+| terraform output  | Show all output values
+| terraform output -json  | Show all output values in JSON format
+| terraform output <name>  | Show a specific output value
+| terraform output -raw <name>  | Show a specific output value without quotes
