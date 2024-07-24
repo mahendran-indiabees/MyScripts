@@ -14,7 +14,16 @@
 
 **Cost Efficiency:** Automating infrastructure deployment and management helps reduce operational costs and optimize resource usage.
 
-#### Benefits
+
+## Stages of Terraform
+* Write the code
+  
+* Review the plan
+  
+* Apply the plan
+  
+![image](https://github.com/user-attachments/assets/0f2bf95d-d9c6-4ec0-a1c9-18b89d40288c)
+
 
 
 
