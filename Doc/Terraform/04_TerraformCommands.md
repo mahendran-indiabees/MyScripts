@@ -130,7 +130,7 @@ terraform providers
 ## Terraform command with useful Arguments:
 
 | Commands             | Description |
-| :---------------- | :------: | 
+| :---------------- | :------ | 
 | terraform plan | Show changes required by the current configuration  | 
 | terraform plan -out=<file>  | Write the plan to a file to apply it later | 
 | terraform plan -target <resource>  | Create a plan for a specific module or resource | 
