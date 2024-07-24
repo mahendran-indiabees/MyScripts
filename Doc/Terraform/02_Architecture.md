@@ -10,7 +10,7 @@
 ## Terraform Core
 Terraform’s core (also known as Terraform CLI) is built on a statically-compiled binary that’s developed using the Go programming language.
 
-###### Responsibilities of terraform Core
+#### Responsibilities of terraform Core
 * Infrastructure as code: reading and interpolating configuration files and modules
   
 * Resource state management
@@ -21,19 +21,19 @@ Terraform’s core (also known as Terraform CLI) is built on a statically-compil
   
 * Terraform Core uses remote procedure calls (RPC) to communicate with Terraform Plugins, and offers multiple ways to discover and load plugins to use
 
-#### Providers
+## Providers
 Providers are the plugins that Terraform uses to interact with various infrastructure services.
 Each provider knows how to communicate with a specific set of APIs (e.g., AWS, Azure, Google Cloud, Docker, etc.).
 
-###### Common examples of providers include:
+#### Common examples of providers include:
 * AWS Provider: For managing resources on Amazon Web Services
 * Azure Provider: For deploying and managing resources in Microsoft Azure
 * Google Cloud Provider: For controlling resources on the Google Cloud Platform
 
-#### State file
+## State file
 Terraform state is a critical component of Terraform that records or track all the metadata and configurations of the infrastructure managed by Terraform. The state file is usually named **terraform.tfstate**
 
-#### Provisioner
+## Provisioner
 * Provisioners in Terraform are used to execute scripts or actions on local or remote machines as part of the resource creation or destruction process. 
 
 * Their primary purpose is to allow for the execution of additional steps that Terraform's resource providers cannot handle directly, such as bootstrapping software or performing cleanup tasks.
