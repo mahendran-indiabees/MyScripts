@@ -5,8 +5,11 @@
   
 #### Benefits
 **Automation:** Terraform automates the setup and management of your infrastructure, saving time and reducing human errors.
+
 **Version Control:** Infrastructure configurations can be stored in version control systems (like Git), making it easy to track changes and collaborate with others.
+
 **Reproducibility:** Easily recreate environments by applying the same configuration files, which is useful for testing, development, and production environments.
+
 **Cost Efficiency:** Automating infrastructure deployment and management helps reduce operational costs and optimize resource usage.
 
 #### Benefits
