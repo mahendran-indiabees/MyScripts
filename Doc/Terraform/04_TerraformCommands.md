@@ -105,7 +105,7 @@ terraform destroy
 terraform refresh
 ```
 
-## terraform get
+## Terraform get
 The `terraform get` command retrieves and updates any modules referenced in your Terraform configuration.
 
 ```
