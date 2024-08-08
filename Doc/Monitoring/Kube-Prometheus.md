@@ -104,3 +104,14 @@ kubectl get pods -A | grep crashpod
 ```
 kubectl delete deployment crashpod
 ```
+
+
+To send alerts to Microsoft Teams, you need to create an Incoming Webhook connector in a Teams channel.
+
+Create an Incoming Webhook in Teams:
+
+Go to the desired channel in Microsoft Teams.
+Click on the ellipsis (...) next to the channel name and select "Connectors".
+Search for "Incoming Webhook" and add it.
+Name your webhook and click "Create".
+Copy the webhook URL.
