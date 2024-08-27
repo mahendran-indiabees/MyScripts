@@ -1,1 +1,73 @@
 scripts
+To authenticate two registries using a username and password in Kaniko's `config.json`, you'll need to include both registries in the `auths` section. Here is the syntax:
+
+### Example `config.json` with Two Registries
+
+```json
+{
+  "auths": {
+    "registry1.example.com": {
+      "auth": "base64_encoded_username:password"
+    },
+    "registry2.example.com": {
+      "auth": "base64_encoded_username:password"
+    }
+  }
+}
+```
+
+### Steps to Generate `auth` Values
+
+1. **Base64 Encoding:**
+   - The `auth` value is a Base64-encoded string of your credentials in the format `username:password`.
+
+2. **Encoding Example:**
+   - For `registry1.example.com`:
+     - Username: `user1`
+     - Password: `password1`
+   - For `registry2.example.com`:
+     - Username: `user2`
+     - Password: `password2`
+
+   **Encoding:**
+   ```bash
+   echo -n 'user1:password1' | base64
+   ```
+   Output: `dXNlcjE6cGFzc3dvcmQx`
+
+   ```bash
+   echo -n 'user2:password2' | base64
+   ```
+   Output: `dXNlcjI6cGFzc3dvcmQy`
+
+### Final `config.json` Example:
+
+```json
+{
+  "auths": {
+    "registry1.example.com": {
+      "auth": "dXNlcjE6cGFzc3dvcmQx"
+    },
+    "registry2.example.com": {
+      "auth": "dXNlcjI6cGFzc3dvcmQy"
+    }
+  }
+}
+```
+
+### Implementing in GitLab CI/CD
+
+You can dynamically create this `config.json` in your GitLab CI/CD pipeline using the `before_script` section:
+
+```yaml
+before_script:
+  - |
+    echo "{\"auths\":{\"$REGISTRY1\":{\"auth\":\"$(echo -n \"$REGISTRY1_USER:$REGISTRY1_PASSWORD\" | base64)\"},\"$REGISTRY2\":{\"auth\":\"$(echo -n \"$REGISTRY2_USER:$REGISTRY2_PASSWORD\" | base64)\"}}}" > /kaniko/.docker/config.json
+```
+
+Replace the following variables with your actual registry details:
+
+- `REGISTRY1`, `REGISTRY1_USER`, `REGISTRY1_PASSWORD`
+- `REGISTRY2`, `REGISTRY2_USER`, `REGISTRY2_PASSWORD`
+
+This will allow Kaniko to authenticate with both registries during the build and push process.
