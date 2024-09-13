@@ -108,3 +108,7 @@ tagging_source:
 
 rollback:
   stage:
+
+
+
+![image](https://github.com/user-attachments/assets/8e23ac1c-85c2-468d-984d-00278fafa3ec)
