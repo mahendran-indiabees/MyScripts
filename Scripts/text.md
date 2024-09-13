@@ -1,108 +1,110 @@
-To avoid Out of Memory (OOM) errors in a Kubernetes pod during traffic spikes, you can follow these best practices:
 
-### 1. **Set Resource Requests and Limits:**
+Based on your requirements, here is a detailed GitLab CI/CD pipeline configuration (`.gitlab-ci.yml`) for automating the deployment process across various environments with semantic versioning, automated rollbacks, and handling of different branch types.
 
-   - **Resource Requests:** Define the minimum amount of CPU and memory a container needs. The Kubernetes scheduler uses these values to decide on which node to place the pod.
-   
-   - **Resource Limits:** Define the maximum amount of CPU and memory a container can use. If the container exceeds these limits, Kubernetes may kill the container, leading to an OOMKilled error.
+### GitLab CI/CD Pipeline Configuration (`.gitlab-ci.yml`)
 
-   **Example:**
-   ```yaml
-   resources:
-     requests:
-       memory: "512Mi"
-       cpu: "500m"
-     limits:
-       memory: "1Gi"
-       cpu: "1000m"
-   ```
+```yaml
+variables:
+  ACR_REGISTRY: "your-acr-registry.azurecr.io"
+  IMAGE_NAME: "your-app-name"
+  DOCKER_DRIVER: overlay2
+  VERSION_FILE: "version.txt"
+  PROD_IMAGE_TAG: "v$(cat $VERSION_FILE)"
 
-   - In this example, the pod is guaranteed at least 512Mi of memory and 500m of CPU, but it won't use more than 1Gi of memory and 1 CPU core.
+stages:
+  - build
+  - deploy_dev
+  - deploy_sit
+  - deploy_uat
+  - deploy_preprod
+  - deploy_prod
+  - tagging
+  - rollback
 
-### 2. **Monitor and Right-Size Resources:**
+# Define the jobs
 
-   - Continuously monitor your application’s resource usage using tools like Prometheus, Grafana, or cloud provider monitoring tools.
-   - Adjust your resource requests and limits based on actual usage. If your application typically uses 800Mi of memory, set the request to slightly above that and the limit to a higher value based on peak usage.
+build_job:
+  stage: build
+  script:
+    - echo "Building JAR..."
+    - ./mvnw clean package -DskipTests
+    - echo "Building Docker Image..."
+    - docker build -t $ACR_REGISTRY/$IMAGE_NAME:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA .
+    - echo "Pushing Docker Image to ACR..."
+    - echo $ACR_PASSWORD | docker login $ACR_REGISTRY -u $ACR_USERNAME --password-stdin
+    - docker push $ACR_REGISTRY/$IMAGE_NAME:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA
+  only:
+    - /^feature\/.*$/  # Runs only on feature branches
+    - /^release\/.*$/  # Runs only on release branches
 
-### 3. **Enable Horizontal Pod Autoscaling (HPA):**
+deploy_dev:
+  stage: deploy_dev
+  script:
+    - echo "Deploying to DEV environment..."
+    - ./deploy.sh dev $ACR_REGISTRY/$IMAGE_NAME:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA
+  only:
+    - /^feature\/.*$/  # Runs only on feature branches
+  dependencies:
+    - build_job
 
-   - HPA automatically scales the number of pods in a deployment based on observed CPU and memory usage or custom metrics.
-   
-   **Example:**
-   ```yaml
-   apiVersion: autoscaling/v1
-   kind: HorizontalPodAutoscaler
-   metadata:
-     name: my-app-hpa
-   spec:
-     scaleTargetRef:
-       apiVersion: apps/v1
-       kind: Deployment
-       name: my-app
-     minReplicas: 2
-     maxReplicas: 10
-     targetCPUUtilizationPercentage: 80
-   ```
+deploy_sit:
+  stage: deploy_sit
+  script:
+    - echo "Deploying to SIT environment..."
+    - ./deploy.sh sit $ACR_REGISTRY/$IMAGE_NAME:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA
+  only:
+    - /^release\/.*$/  # Runs only on release branches
+  when: manual
+  dependencies:
+    - build_job
 
-   - This HPA will scale the deployment between 2 and 10 replicas to maintain an average CPU utilization of 80%.
+deploy_uat:
+  stage: deploy_uat
+  script:
+    - echo "Deploying to UAT environment..."
+    - ./deploy.sh uat $ACR_REGISTRY/$IMAGE_NAME:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA
+  only:
+    - /^release\/.*$/  # Runs only on release branches
+  when: manual
+  dependencies:
+    - build_job
 
-### 4. **Use Vertical Pod Autoscaler (VPA):**
+deploy_preprod:
+  stage: deploy_preprod
+  script:
+    - echo "Deploying to PrePROD environment..."
+    - ./deploy.sh preprod $ACR_REGISTRY/$IMAGE_NAME:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA
+  only:
+    - /^release\/.*$/  # Runs only on release branches
+  when: manual
+  dependencies:
+    - build_job
 
-   - VPA automatically adjusts the resource requests and limits for your pods based on historical usage.
-   
-   **Example:**
-   ```yaml
-   apiVersion: autoscaling.k8s.io/v1
-   kind: VerticalPodAutoscaler
-   metadata:
-     name: my-app-vpa
-   spec:
-     targetRef:
-       apiVersion: "apps/v1"
-       kind:       Deployment
-       name:       my-app
-     updatePolicy:
-       updateMode: "Auto"
-   ```
+deploy_prod:
+  stage: deploy_prod
+  script:
+    - echo "Deploying to PROD environment with tag $PROD_IMAGE_TAG..."
+    - ./deploy.sh prod $ACR_REGISTRY/$IMAGE_NAME:$PROD_IMAGE_TAG
+  only:
+    - master
+  dependencies:
+    - build_job
 
-   - VPA can be useful if your application's resource usage varies over time, but be careful when using it in conjunction with HPA.
+tagging_source:
+  stage: tagging
+  script:
+    - echo "Tagging source with $PROD_IMAGE_TAG..."
+    - git tag $PROD_IMAGE_TAG
+    - git push origin $PROD_IMAGE_TAG
+    - echo "Incrementing version for the next release..."
+    - echo $(($CI_PIPELINE_IID+1)) > $VERSION_FILE
+    - git add $VERSION_FILE
+    - git commit -m "Bump version to $PROD_IMAGE_TAG"
+    - git push origin master
+  only:
+    - master
+  dependencies:
+    - deploy_prod
 
-### 5. **Optimize Application Memory Usage:**
-
-   - **Memory Leaks:** Ensure your application does not have memory leaks. Regularly profiling and testing your application under load can help identify memory leaks.
-   - **Garbage Collection:** If your application is written in a language like Java, tune the garbage collector to better handle spikes in memory usage.
-
-### 6. **Use Node Auto-Scaling:**
-
-   - Ensure that your Kubernetes cluster has a Cluster Autoscaler enabled (e.g., on GCP, AWS, Azure). This will automatically add more nodes when the current nodes are under pressure and can't accommodate new or scaled pods.
-   
-### 7. **Graceful Shutdown and Readiness Probes:**
-
-   - Implement graceful shutdown in your application so it can properly release resources before being terminated.
-   - Use readiness probes to prevent traffic from hitting a pod that is not ready to handle it, ensuring that only healthy pods receive traffic.
-
-   **Example:**
-   ```yaml
-   readinessProbe:
-     httpGet:
-       path: /health
-       port: 8080
-     initialDelaySeconds: 5
-     periodSeconds: 10
-   ```
-
-### 8. **Use Caching and Load Distribution:**
-
-   - Implement caching mechanisms to reduce the load on your application, particularly during high traffic.
-   - Distribute load effectively using a load balancer to ensure no single pod is overwhelmed by traffic.
-
-### 9. **Review Application Design:**
-
-   - Ensure that your application is designed to handle concurrent requests efficiently, using techniques like connection pooling and asynchronous processing where possible.
-
-### 10. **Use Sidecar Containers for Specific Tasks:**
-
-   - If your application performs heavy processing tasks, consider offloading these to a sidecar container to avoid affecting the main application’s memory usage.
-
-### Conclusion:
-By carefully setting and tuning resource requests and limits, implementing auto-scaling, monitoring resource usage, optimizing your application, and leveraging Kubernetes features like HPA and VPA, you can significantly reduce the risk of OOM errors in your pods during traffic spikes.
+rollback:
+  stage:
