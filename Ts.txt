@@ -1,0 +1,212 @@
+Robusta Overview
+
+Robusta is an open-source automation and observability platform that integrates with Kubernetes and Prometheus. It extends the monitoring stack by triggering automated playbooks in response to Prometheus alerts, sending actionable notifications to platforms like Slack or Microsoft Teams, and running preconfigured Kubernetes workflows to address or analyze problems.
+
+Here’s a step-by-step explanation of how Robusta works:
+
+How Robusta Works: Step by Step
+
+1. Prometheus Integration
+
+Robusta connects to Prometheus to monitor alerts and metrics.
+
+Prometheus alerts are configured to trigger Robusta playbooks automatically.
+
+
+
+2. Playbooks
+
+Robusta playbooks are preconfigured automation scripts that analyze and respond to specific events, such as high CPU usage or pod restarts.
+
+Playbooks can collect logs, run commands, or apply Kubernetes fixes.
+
+
+
+3. Forwarders
+
+Robusta uses forwarders to send enriched notifications to communication platforms like Slack, Teams, or email.
+
+Notifications include detailed information about the issue and possible solutions, such as logs or metrics.
+
+
+
+4. Runner
+
+The runner pod executes the playbooks and acts as the central orchestrator of Robusta’s functionality.
+
+It interacts with Kubernetes resources and performs corrective actions based on the playbooks.
+
+
+
+
+
+---
+
+Explanation of Robusta Pods
+
+1. robusta-kube-prometheus-st-operator
+
+Purpose:
+
+This pod is part of the Prometheus Operator, which manages and deploys the Prometheus monitoring stack.
+
+It simplifies deploying Prometheus, Alertmanager, and Grafana while ensuring they are configured properly.
+
+
+Functions:
+
+Manages Prometheus CRDs (Custom Resource Definitions) and configurations.
+
+Automatically provisions Prometheus instances.
+
+Handles upgrades and scalability of the monitoring stack.
+
+
+
+
+---
+
+2. robusta-kube-state-metrics
+
+Purpose:
+
+Exposes Kubernetes resource metrics as Prometheus-compatible metrics.
+
+Provides detailed insights into the state of cluster components like pods, nodes, and deployments.
+
+
+Functions:
+
+Gathers Kubernetes resource information such as node status, pod resource requests, and limits.
+
+Enables Prometheus to monitor the health and resource usage of the Kubernetes cluster.
+
+
+
+
+---
+
+3. prometheus-robusta-kube-prometheus-st-prometheus
+
+Purpose:
+
+The Prometheus pod deployed by the Prometheus Operator to scrape metrics and monitor Kubernetes clusters.
+
+
+Functions:
+
+Scrapes metrics from Kubernetes, kube-state-metrics, and other Prometheus exporters.
+
+Sends alerts based on defined alert rules, which Robusta uses to trigger playbooks.
+
+
+
+
+---
+
+4. robusta-grafana
+
+Purpose:
+
+Provides a user-friendly dashboard for visualizing metrics collected by Prometheus.
+
+Enables deeper analysis of cluster performance and troubleshooting.
+
+
+Functions:
+
+Displays graphs, charts, and panels to monitor cluster health.
+
+Allows creating custom dashboards for specific use cases or metrics.
+
+
+
+
+---
+
+5. robusta-forwarder
+
+Purpose:
+
+Sends enriched alert notifications to external systems (Slack, Teams, etc.).
+
+
+Functions:
+
+Receives alerts and playbook results from the runner.
+
+Formats notifications to include actionable insights and relevant data like logs and metrics.
+
+
+
+
+---
+
+6. robusta-runner
+
+Purpose:
+
+Executes playbooks in response to Prometheus alerts.
+
+Serves as the core orchestrator of Robusta’s automation capabilities.
+
+
+Functions:
+
+Listens for Prometheus alerts via webhooks.
+
+Runs predefined or custom playbooks to address issues.
+
+Collects logs and diagnostic data during incidents.
+
+
+
+
+---
+
+Explanation of Robusta Services (SVC)
+
+1. robusta-grafana
+
+Purpose:
+
+Exposes the Grafana dashboard for external access.
+
+
+Details:
+
+Type: ClusterIP, NodePort, or LoadBalancer (depending on configuration).
+
+Access: Provides a web UI for monitoring and creating dashboards.
+
+Endpoints: Used to view and analyze metrics collected by Prometheus.
+
+
+
+
+---
+
+2. robusta-kube-prometheus-st-prometheus
+
+Purpose:
+
+Exposes Prometheus for metric scraping and access to Prometheus UI.
+
+
+Details:
+
+Type: ClusterIP, NodePort, or LoadBalancer.
+
+Access: Provides an interface for querying metrics and managing alert rules.
+
+Endpoints: Allows external tools (or Robusta) to interact with Prometheus for metric collection and alerting.
+
+
+
+
+---
+
+Summary
+
+Robusta is a powerful platform that extends Kubernetes observability and automation. It integrates seamlessly with Prometheus to enhance incident response by executing predefined playbooks and sending enriched notifications to collaboration tools. Each pod and service in Robusta serves a specific function, working together to automate and streamline monitoring and troubleshooting.
+
