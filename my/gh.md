@@ -14,6 +14,8 @@ Run extension install command to import gh-actions-importer
  gh extension install github/gh-actions-importer
 ```
 
+#### Make Sure docker should be installed and Daemon is up and running
+![alt text](image-1.png)
 
 #### Run GitHub Actions Importer command to migrate pipelines from Jenkins to GitHub Actions.
 Before run the importer command, Update the github actions importer
@@ -32,4 +34,4 @@ gh actions-importer dry-run jenkins -s <Migrate Job Url> -u <Jenkins Url> -n <Us
 ###### Possible Options
 ![alt text](image-2.png)
 
-![alt text](image-1.png)
+
