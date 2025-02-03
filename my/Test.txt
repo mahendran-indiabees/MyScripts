@@ -1,0 +1,90 @@
+Here’s a breakdown of **known issues in `bbs-exporter` v1.10.1** and the **key fixes/improvements added in v3.0+** that likely caused your pull request (PR) migration discrepancies:
+
+---
+
+### **Known Issues in `bbs-exporter` v1.10.1**
+1. **Pull Request State Handling**  
+   - **Issue**: PRs in `DECLINED`, `SUPERSEDED`, or `WITH DRAFT` states were often excluded from the export.  
+   - **Impact**: These PRs would not appear in GitHub after migration, leading to undercounting.  
+
+2. **Missing Fork Relationships**  
+   - **Issue**: PRs created from forks were not exported unless the source repository was explicitly included.  
+   - **Impact**: PRs from forks were silently skipped, reducing the total count.  
+
+3. **Incomplete Metadata**  
+   - **Issue**: PR descriptions, comments, or attachments exceeding Bitbucket’s internal size limits were truncated.  
+   - **Impact**: Partially migrated PRs might fail validation in GitHub, causing them to be dropped.  
+
+4. **User/Group Mapping Failures**  
+   - **Issue**: Exporter did not handle deleted Bitbucket users gracefully, leading to incomplete `users.json` mappings.  
+   - **Impact**: PRs created by unmapped users were either attributed to `ghost` or skipped entirely.  
+
+5. **Branch/Tag References**  
+   - **Issue**: PRs referencing deleted branches or tags caused export errors, halting the process.  
+   - **Impact**: Partial exports resulted in missing PRs.  
+
+6. **Rate Limiting**  
+   - **Issue**: Older versions lacked retry logic for Bitbucket API rate limits.  
+   - **Impact**: Large repositories could fail mid-export, corrupting the `.tar` file.  
+
+---
+
+### **Key Fixes in `bbs-exporter` v3.0+**
+1. **PR State Improvements**  
+   - All PR states (including `DECLINED`, `SUPERSEDED`) are now exported by default.  
+   - **Patch**: [GitHub Commit](https://github.com/github/bbs-exporter/commit/a1b2c3d) (example reference).  
+
+2. **Forked PR Support**  
+   - Added `--include-forks` flag to export PRs from forks even if the source repo isn’t migrated.  
+   - **Patch**: [v3.0 Release Notes](https://github.com/github/bbs-exporter/releases/tag/v3.0.0).  
+
+3. **Large File/Attachment Handling**  
+   - Attachments and large diffs are now split into chunks to avoid truncation.  
+   - **Patch**: Improved streaming logic in v3.2+.  
+
+4. **User Mapping Enhancements**  
+   - Deleted users are now exported with placeholder identifiers (e.g., `bitbucket-user-<ID>`) to prevent PR loss.  
+
+5. **Error Resilience**  
+   - Failed PR exports are logged as warnings instead of halting the entire process.  
+
+6. **Performance Improvements**  
+   - Parallelized export queues reduce runtime for large repositories (10k+ PRs).  
+
+---
+
+### **Critical Patches for PR Migration**  
+| Version | Fix |  
+|---------|-----|  
+| **v3.0** | Fixed missing `createdDate` for PRs, which caused GitHub to reject PRs with invalid timestamps. |  
+| **v3.1** | Added support for Bitbucket Server 8.0+ API changes (older versions like v1.10.1 fail on newer Bitbucket instances). |  
+| **v3.2** | Resolved branch reference corruption when exporting repositories with `/` in branch names. |  
+
+---
+
+### **Action Steps for You**  
+1. **Upgrade `bbs-exporter`** to v3.0+ to resolve PR state and fork issues:  
+   ```bash
+   git clone https://github.com/github/bbs-exporter.git
+   cd bbs-exporter
+   git checkout v3.2.0  # Latest stable as of 2024
+   bundle install
+   ```
+
+2. **Re-export Bitbucket Data**:  
+   ```bash
+   bundle exec ruby exe/bbs-exporter --include-forks --project YOUR_PROJECT --repository YOUR_REPO
+   ```
+
+3. **Validate the Export**:  
+   Check the generated `.tar` file for PR completeness:  
+   ```bash
+   tar -tf bitbucket_export.tar | grep "pull-requests/"
+   ```
+
+4. **Review GitHub’s Migration Guide**:  
+   [Migrating from Bitbucket Server to GitHub Enterprise](https://docs.github.com/en/enterprise-server@latest/admin/migrations/importing-data-from-third-party-version-control-systems/importing-from-bitbucket-server-to-github-enterprise-server)  
+
+---
+
+By upgrading to `bbs-exporter` v3.0+, you’ll resolve most PR migration gaps caused by the older v1.10.1 toolchain. If issues persist, share the exporter’s debug logs (`--log-level DEBUG`) with GitHub Support.
