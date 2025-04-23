@@ -1,3 +1,10 @@
+tasklist | findstr /i "anydesk teamviewer splashtop screenconnect rustdesk parsec logmein ultraviewer"
+
+wmic path Win32_PnPEntity get Caption,DeviceID | findstr /i "keyboard"
+
+Get-Process | Where-Object { $_.ProcessName -match "anydesk|teamviewer|vnc|radmin" }
+
+
 Jenkins
 Scenario: A Jenkins pipeline is failing intermittently due to race conditions between parallel stages. How would you resolve this?
 
